@@ -6,6 +6,7 @@ django-extensions==1.4.0
 django-pdb==0.4.0
 django-secure==1.0
 django-waffle==0.10
+djangorestframework==2.4.3
 fancycompleter==0.4
 flake8==2.2.3
 mccabe==0.2.1
