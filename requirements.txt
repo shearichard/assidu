@@ -5,6 +5,7 @@ django-debug-toolbar==1.2.1
 django-extensions==1.4.0
 django-pdb==0.4.0
 django-secure==1.0
+django-timezone-field==1.0
 django-waffle==0.10
 djangorestframework==2.4.3
 fancycompleter==0.4
@@ -15,6 +16,7 @@ pep8==1.5.7
 psycopg2==2.5.4
 pyflakes==0.8.1
 pyrepl==0.8.4
+pytz==2014.7
 selenium==2.43.0
 six==1.8.0
 sqlparse==0.1.12
