@@ -36,6 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'timezone_field',
+    'accounts',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -80,4 +82,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+
 STATIC_URL = '/static/'
+
+
+AUTH_USER_MODEL = 'accounts.User'
