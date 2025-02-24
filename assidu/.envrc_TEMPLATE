@@ -1,8 +1,0 @@
-# This file  doesn't currently hold the correct values
-# Django Secret Key
-export ASSIDU_SECRET_KEY="PLACEHOLDER_VALUE_ASSIDU_SECRET_KEY"
-# Used to include those packages which are only used in development
-# Hence this value should be changed to 0 for production.
-export ASSIDU_ACTIVATE_DEV_TOOLS=1
-#Define where the Django settings to be used are
-export DJANGO_SETTINGS_MODULE=backend.settings.local
