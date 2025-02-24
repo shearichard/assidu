@@ -48,9 +48,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'assidu.urls'
+ROOT_URLCONF = 'config.urls'
 
-WSGI_APPLICATION = 'assidu.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database

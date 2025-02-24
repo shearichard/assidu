@@ -1,6 +1,13 @@
+# Development emails
+email_produced_in_development
+fake-email-server
+# # Git #
+.envrc
+#
 *.py[cod]
 
 # Database   ===========================================
+db.sqlite3
 ./db  
 db/  
 data
@@ -8,8 +15,6 @@ data
 venv
 # autoenv (https://github.com/kennethreitz/autoenv) ====
 .env
-# pretend email server
-fake-email-server
 # Local settings
 assidu/assidu/settings/local.py
 
