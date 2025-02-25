@@ -38,7 +38,7 @@ ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
-INSTALLED_APPS = (
+BASE_INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,9 +47,19 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'timezone_field',
     'accounts',
-)
+]
 
-MIDDLEWARE = (
+DEV_ONLY_INSTALLED_APPS = [
+    'django_extensions',
+	'debug_toolbar',
+]
+
+if RUNNING_DEVSERVER:
+    INSTALLED_APPS = BASE_INSTALLED_APPS + DEV_ONLY_INSTALLED_APPS
+else:
+    INSTALLED_APPS = BASE_INSTALLED_APPS
+
+BASE_MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -57,6 +67,17 @@ MIDDLEWARE = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+
+DEV_ONLY_MIDDLEWARE = (
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+)
+
+# NOTE: Putting the DEV_ONLY_MIDDLEWARE first in the resulting
+# MIDDLEWARE works for now but might not work for all situations.
+if RUNNING_DEVSERVER:
+    MIDDLEWARE = DEV_ONLY_MIDDLEWARE + BASE_MIDDLEWARE 
+else:
+    MIDDLEWARE = BASE_MIDDLEWARE
 
 TEMPLATES = [
     {
