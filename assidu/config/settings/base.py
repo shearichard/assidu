@@ -2,6 +2,7 @@
 Django settings for assidu project.
 """
 import os
+from pathlib import Path
 
 ###################################################################################
 def get_env_variable(var_name):
@@ -18,16 +19,10 @@ def get_env_variable(var_name):
 # 
 RUNNING_DEVSERVER = (get_env_variable("ASSIDU_ACTIVATE_DEV_TOOLS") == "1")
 # 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_env_variable("ASSIDU_SECRET_KEY")
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True 
 
@@ -47,11 +42,12 @@ BASE_INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'timezone_field',
     'accounts',
+    'assidu',
 ]
 
 DEV_ONLY_INSTALLED_APPS = [
     'django_extensions',
-	'debug_toolbar',
+	#'debug_toolbar',
 ]
 
 if RUNNING_DEVSERVER:
@@ -68,9 +64,10 @@ BASE_MIDDLEWARE = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-DEV_ONLY_MIDDLEWARE = (
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
-)
+#DEV_ONLY_MIDDLEWARE = (
+#    "debug_toolbar.middleware.DebugToolbarMiddleware",
+#)
+DEV_ONLY_MIDDLEWARE = ()
 
 # NOTE: Putting the DEV_ONLY_MIDDLEWARE first in the resulting
 # MIDDLEWARE works for now but might not work for all situations.
@@ -83,7 +80,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            os.path.join(BASE_DIR, '../templates/'),
+            os.path.join(BASE_DIR, 'templates/'),
             ],
         "APP_DIRS": True,
         "OPTIONS": {

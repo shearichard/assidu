@@ -11,6 +11,7 @@ django-debug-toolbar = "*"
 django-extensions = "*"
 djangorestframework = "*"
 django-timezone-field = "*"
+whitenoise = "*"
 
 [dev-packages]
 
