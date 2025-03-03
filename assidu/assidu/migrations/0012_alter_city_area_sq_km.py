@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             model_name="city",
             name="area_sq_km",
             field=models.IntegerField(
-                blank=True, null=True, validators=[assidu.models.divisible_by_seven]
+                blank=True, null=True, validators=[assidu.models.validate_not_divisible_by_seven]
             ),
         ),
     ]

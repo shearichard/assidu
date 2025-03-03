@@ -52,8 +52,7 @@ class Country(models.Model):
     def __str__(self):
         return self.country_iso_code
 
-def divisible_by_seven(value):
-    #import pdb;pdb.set_trace()
+def validate_not_divisible_by_seven(value):
     if (value is not None):
         if value % 7 == 0:
             raise ValidationError(
@@ -63,8 +62,6 @@ def divisible_by_seven(value):
 
 
 def validate_even(value):
-
-    #import pdb;pdb.set_trace()
     if (value is not None):
         if value % 2 != 0:
             raise ValidationError(
@@ -85,7 +82,7 @@ class City(models.Model):
     mayor_name = models.CharField(max_length=255)
     date_of_last_mayoral_election = models.DateField(null=True, blank=True)
     population = models.IntegerField()
-    area_sq_km = models.IntegerField(null=True, blank=True, validators=[divisible_by_seven, validate_even])
+    area_sq_km = models.IntegerField(null=True, blank=True, validators=[validate_not_divisible_by_seven, validate_even])
     elevation_metres = models.IntegerField(null=True, blank=True)
     some_number = models.IntegerField(blank=True, null=True)
 
@@ -94,27 +91,6 @@ class City(models.Model):
 
 
     def clean(self):
-        #
-        '''
-        data = self.cleaned_data
-        '''
-        '''
-        if not ('movement_start' in data.keys() and 'trial_start' in data.keys()  and 'trial_stop' in data.keys()):
-            raise forms.ValidationError("Please fill out missing fields.")
-        '''
-
-        '''
-        trial_start = data['trial_start']
-        movement_start = data['movement_start']
-        trial_stop = data['trial_stop']
-        '''
-
-        '''
-        elevation_metres = data['elevation_metres']
-        population = data['population']
-        '''
-        #
-        #import pdb;pdb.set_trace()
 
         if (self.elevation_metres is not None):
             if (self.elevation_metres > HIGHEST_POINT_ON_LAND):

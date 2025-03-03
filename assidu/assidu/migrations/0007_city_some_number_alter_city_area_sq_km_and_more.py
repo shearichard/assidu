@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 default=1,
                 validators=[
                     assidu.models.validate_even,
-                    assidu.models.divisible_by_seven,
+                    assidu.models.validate_not_divisible_by_seven,
                 ],
             ),
             preserve_default=False,
@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 null=True,
                 validators=[
                     assidu.models.validate_even,
-                    assidu.models.divisible_by_seven,
+                    assidu.models.validate_not_divisible_by_seven,
                 ],
             ),
         ),
