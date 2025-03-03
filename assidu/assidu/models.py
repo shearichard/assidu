@@ -1,8 +1,11 @@
-from django.db import models
 from datetime import date
+
+from django.db import models
 from django.utils import timezone
+from django.core.exceptions import ValidationError
+
 from accounts.models import User
-from .model_static_data import COUNTRY_ISO_CODES
+from .model_static_data import COUNTRY_ISO_CODES, HIGHEST_POINT_ON_LAND, LOWEST_POINT_ON_LAND
 
 
 class Task(models.Model):
@@ -49,6 +52,26 @@ class Country(models.Model):
     def __str__(self):
         return self.country_iso_code
 
+def divisible_by_seven(value):
+    #import pdb;pdb.set_trace()
+    if (value is not None):
+        if value % 7 == 0:
+            raise ValidationError(
+                "%(value)s is divisible by seven",
+                params={"value": value},
+                )
+
+
+def validate_even(value):
+
+    #import pdb;pdb.set_trace()
+    if (value is not None):
+        if value % 2 != 0:
+            raise ValidationError(
+                "%(value)s is not an even number",
+                params={"value": value},
+                )
+
 
 class City(models.Model):
     '''
@@ -60,14 +83,57 @@ class City(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     city_name = models.CharField(max_length=255)
     mayor_name = models.CharField(max_length=255)
-    date_of_last_mayoral_election = models.DateField()
+    date_of_last_mayoral_election = models.DateField(null=True, blank=True)
     population = models.IntegerField()
-    area_sq_km = models.IntegerField()
-    elevation_metres = models.IntegerField()
+    area_sq_km = models.IntegerField(null=True, blank=True, validators=[divisible_by_seven, validate_even])
+    elevation_metres = models.IntegerField(null=True, blank=True)
+    some_number = models.IntegerField(blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Cities"
 
+
+    def clean(self):
+        #
+        '''
+        data = self.cleaned_data
+        '''
+        '''
+        if not ('movement_start' in data.keys() and 'trial_start' in data.keys()  and 'trial_stop' in data.keys()):
+            raise forms.ValidationError("Please fill out missing fields.")
+        '''
+
+        '''
+        trial_start = data['trial_start']
+        movement_start = data['movement_start']
+        trial_stop = data['trial_stop']
+        '''
+
+        '''
+        elevation_metres = data['elevation_metres']
+        population = data['population']
+        '''
+        #
+        #import pdb;pdb.set_trace()
+
+        if (self.elevation_metres is not None):
+            if (self.elevation_metres > HIGHEST_POINT_ON_LAND):
+                raise ValidationError("Elevation is higher than any point on earth.")
+
+        if (self.elevation_metres is not None):
+            if (self.elevation_metres < LOWEST_POINT_ON_LAND):
+                raise ValidationError("Elevation is lower than any point on earth.")
+
+        today = date.today()
+
+        if (self.date_of_last_mayoral_election is not None):
+            if (self.date_of_last_mayoral_election > today):
+                raise ValidationError("Date of Last Mayoral Election is after today. If provided, it must be today, or earlier")
+
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.city_name} ({self.country.country_iso_code})"

@@ -1,3 +1,6 @@
+HIGHEST_POINT_ON_LAND = 9000
+LOWEST_POINT_ON_LAND = -430 
+
 COUNTRY_ISO_CODES = {
 "ABW":  "Aruba",
 "AFG":  "Afghanistan",
