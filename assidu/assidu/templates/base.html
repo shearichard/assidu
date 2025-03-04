@@ -10,6 +10,25 @@
   </head>
   <body class="flex items-center justify-center h-screen">
     <div class="max-w-3xl w-full">
+        <body class="bg-gray-500">
+              <nav class="w-full px-8 bg-purple-700 text-white py-4">
+                          <div class="container mx-auto flex items-center justify-between">
+                                        <div class="flex items-center">
+                                                        <img class="rounded-full h-8 w-8 mr-2 md:h-12 md:w-12" src="https://cdn.pixabay.com/photo/2014/04/02/17/07/user-307993_1280.png" alt="Profile Image">
+                                                                    <h1 class="text-2xl font-bold ">Sophia Johnson</h1>
+                                                                              </div>
+                                                                                        <ul class="md:flex space-x-8 hidden text-xl font-semibold">
+                                                                                                        <li><a href="#" class="cursor-pointer hover:underline">About Me</a></li>
+                                                                                                                    <li><a href="#" class="cursor-pointer hover:underline">Projects</a></li>
+                                                                                                                                <li><a href="#" class="cursor-pointer hover:underline">Resume</a></li>
+                                                                                                                                            <li><a href="#" class="cursor-pointer hover:underline">Contact</a></li>
+                                                                                                                                                      </ul>
+                                                                                                                                                                <div class="md:hidden">
+                                                                                                                                                                                <a class="text-4xl font-semibold" href="#">&#8801;</a>
+                                                                                                                                                                                          </div>
+                                                                                                                                                                                                  </div>
+                                                                                                                                                                                                        </nav>
+        </body>
       {% block content %}{% endblock %}
     </div>
   </body>
