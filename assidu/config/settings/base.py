@@ -26,8 +26,6 @@ SECRET_KEY = get_env_variable("ASSIDU_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True 
 
-TEMPLATE_DEBUG = True
-
 ALLOWED_HOSTS = ['127.0.0.1']
 
 
@@ -41,6 +39,7 @@ BASE_INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'timezone_field',
+    'neapolitan',
     'accounts',
     'assidu',
 ]
@@ -93,6 +92,9 @@ TEMPLATES = [
         },
     },
 ]
+print("A")
+print(os.path.join(BASE_DIR, 'templates/'))
+print("B")
 
 ROOT_URLCONF = 'config.urls'
 
