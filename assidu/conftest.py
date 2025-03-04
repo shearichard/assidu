@@ -61,3 +61,13 @@ def authenticated_api_client():
 def create_country(cntry_iso_cde="DEU", popultn=100, areasqkm=101):
     c = Country.objects.create(country_iso_code=cntry_iso_cde, population=popultn, area_sq_km=areasqkm)
     return c
+
+@pytest.fixture
+def username():
+	#Temporary only https://docs.pytest.org/en/latest/how-to/fixtures.html#override-a-fixture-with-direct-test-parametrization
+	return 'username'
+
+@pytest.fixture
+def other_username(username):
+	#Temporary only https://docs.pytest.org/en/latest/how-to/fixtures.html#override-a-fixture-with-direct-test-parametrization
+	return 'other-' + username
