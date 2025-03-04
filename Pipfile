@@ -12,6 +12,7 @@ django-extensions = "*"
 djangorestframework = "*"
 django-timezone-field = "*"
 whitenoise = "*"
+neapolitan = "*"
 
 [dev-packages]
 pytest = "*"
