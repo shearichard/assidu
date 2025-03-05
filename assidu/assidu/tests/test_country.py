@@ -10,12 +10,12 @@ from assidu.forms import CountryForm
 # models test
 class CountryTest(TestCase):
 
-    def create_city(self, cntry_iso_cde="DEU", popultn=100, areasqkm=101):
+    def create_country(self, cntry_iso_cde="DEU", popultn=100, areasqkm=101):
         return Country.objects.create(country_iso_code=cntry_iso_cde, population=popultn, area_sq_km=areasqkm)
 
     # Test model
     def test_city_creation(self):
-        c = self.create_city()
+        c = self.create_country()
         self.assertTrue(isinstance(c, Country))
         self.assertEqual(c.__str__(), c.country_iso_code)
 
@@ -43,7 +43,7 @@ class CountryTest(TestCase):
         self.assertIn(str(c.area_sq_km).encode('latin1'), resp.content)
         self.assertIn(b"FRA", resp.content)
 
-    # Test views
+    # Test forms
     def test_valid_form(self):
         c = Country.objects.create(country_iso_code="USA", population=200, area_sq_km=201)
         data = { "country_iso_code": c.country_iso_code, "population": c.population , "area_sq_km": c.area_sq_km }
