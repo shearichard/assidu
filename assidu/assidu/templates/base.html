@@ -6,31 +6,57 @@
     <title>{% block title %}Assidu - the anti-procrastination tool{% endblock %}</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Placeholder navbar START https://www.geeksforgeeks.org/how-to-create-a-responsive-navigation-bar-in-tailwind-css/ -->
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <!-- Placeholder navbar FINISH -->
     {% block head %}{% endblock %}
   </head>
   <body class="flex items-center justify-center h-screen">
     <div class="max-w-3xl w-full">
-        <body class="bg-gray-500">
-              <nav class="w-full px-8 bg-purple-700 text-white py-4">
-                          <div class="container mx-auto flex items-center justify-between">
-                                        <div class="flex items-center">
-                                                        <img class="rounded-full h-8 w-8 mr-2 md:h-12 md:w-12" src="https://cdn.pixabay.com/photo/2014/04/02/17/07/user-307993_1280.png" alt="Profile Image">
-                                                                    <h1 class="text-2xl font-bold ">Sophia Johnson</h1>
-                                                                              </div>
-                                                                                        <ul class="md:flex space-x-8 hidden text-xl font-semibold">
-                                                                                                        <li><a href="#" class="cursor-pointer hover:underline">About Me</a></li>
-                                                                                                                    <li><a href="#" class="cursor-pointer hover:underline">Projects</a></li>
-                                                                                                                                <li><a href="#" class="cursor-pointer hover:underline">Resume</a></li>
-                                                                                                                                            <li><a href="#" class="cursor-pointer hover:underline">Contact</a></li>
-                                                                                                                                                      </ul>
-                                                                                                                                                                <div class="md:hidden">
-                                                                                                                                                                                <a class="text-4xl font-semibold" href="#">&#8801;</a>
-                                                                                                                                                                                          </div>
-                                                                                                                                                                                                  </div>
-                                                                                                                                                                                                        </nav>
-        </body>
+      <!-- ******************************************************************************************************************-->
+      <!-- Placeholder navbar START https://www.geeksforgeeks.org/how-to-create-a-responsive-navigation-bar-in-tailwind-css/ -->
+      <!-- ******************************************************************************************************************-->
+      <header class="bg-indigo-600 text-white py-1 my-8">
+
+        <nav class="flex justify-between items-center w-[92%]  mx-auto my-4">
+
+          <div class="w-16 font-bold text-white-700">
+            Assidu
+          </div>
+          <div class="nav-links duration-500 md:static absolute md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto  w-full flex items-center px-5">
+            <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
+              <li>
+                <a class="hover:text-gray-500" href="/">Home</a>
+              </li>
+              <li>
+                <a class="hover:text-gray-500" href="/country/">Country</a>
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-center gap-6">
+            <ion-icon onclick="onToggleMenu(this)" 
+              name="menu" class="text-3xl cursor-pointer md:hidden text-white">
+            </ion-icon>
+          </div>
+
+        </nav>
+
+      </header>
+
+      <script>
+        const navLinks = document.querySelector('.nav-links')
+        function onToggleMenu(e) {
+          e.name = e.name === 'menu' ? 'close' : 'menu'
+          navLinks.classList.toggle('top-[6%]')
+        }
+      </script>
+      <!-- ******************************************************************************************************************-->
+      <!-- Placeholder navbar FINISH -->
+      <!-- ******************************************************************************************************************-->
+
       {% block content %}{% endblock %}
     </div>
+
   </body>
 </html>
 
