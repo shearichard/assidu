@@ -34,9 +34,6 @@ def test_country_creation_as_a_function_new_style_fixtures_c(create_country):
     assert create_country.area_sq_km== 101
 
 
-
-
-
 @pytest.mark.parametrize('username', ['directly-overridden-username'])
 def test_username(username):
 	#Temporary only https://docs.pytest.org/en/latest/how-to/fixtures.html#override-a-fixture-with-direct-test-parametrization
