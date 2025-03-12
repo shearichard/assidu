@@ -1,11 +1,16 @@
+# Temporary graphical output from class structure diagram experiments
+assidu/doco/class-structure-experiments/
+
 # Pytest output report
 pytest_results_report.html
+
 # Development emails
 email_produced_in_development
 fake-email-server
+
 # # Git #
 .envrc
-#
+
 *.py[cod]
 
 # Database   ===========================================
@@ -13,10 +18,13 @@ db.sqlite3
 ./db  
 db/  
 data
+
 # Virtual env===========================================
 venv
+
 # autoenv (https://github.com/kennethreitz/autoenv) ====
 .env
+
 # Local settings
 assidu/assidu/settings/local.py
 
