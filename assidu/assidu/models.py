@@ -3,6 +3,7 @@ from datetime import date
 from django.db import models
 from django.utils import timezone
 from django.core.exceptions import ValidationError
+from django.db.models import F
 
 from accounts.models import User
 from .model_static_data import COUNTRY_ISO_CODES, HIGHEST_POINT_ON_LAND, LOWEST_POINT_ON_LAND
@@ -70,6 +71,14 @@ def validate_even(value):
                 )
 
 
+class CityManager(models.Manager):
+    def get_queryset(self):
+        # Annotate the queryset with the country_iso_code from the related Country model
+        return super().get_queryset().annotate(
+            country_iso_code=F('country__country_iso_code')
+        )
+
+
 class City(models.Model):
     '''
     Represents a City.
@@ -85,6 +94,14 @@ class City(models.Model):
     area_sq_km = models.IntegerField(null=True, blank=True, validators=[validate_not_divisible_by_seven, validate_even])
     elevation_metres = models.IntegerField(null=True, blank=True)
     some_number = models.IntegerField(blank=True, null=True)
+    '''
+    @property
+    def country_iso_code(self):
+        return self.country.country_iso_code if self.country else None
+    '''
+
+    objects = CityManager()
+
 
     class Meta:
         verbose_name_plural = "Cities"
@@ -113,4 +130,5 @@ class City(models.Model):
 
     def __str__(self):
         return f"{self.city_name} ({self.country.country_iso_code})"
+        #return f"{self.city_name}"
 
