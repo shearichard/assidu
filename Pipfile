@@ -21,6 +21,7 @@ flake8-django = "*"
 flake8 = "*"
 coverage = "*"
 pytest-html = "*"
+pylint = "*"
 
 [requires]
 python_version = "3.10"
