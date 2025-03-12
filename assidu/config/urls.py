@@ -16,12 +16,14 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 #
 from assidu.views import CountryView, CityView
 #
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('city/', include('assidu.urls')),
+
 ] 
 urlpatterns += CountryView.get_urls()
 urlpatterns += CityView.get_urls()
