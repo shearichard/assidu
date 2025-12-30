@@ -9,5 +9,7 @@ urlpatterns = [
         name="city_list_index"),
 ]
 '''
-urlpatterns = []
+urlpatterns = [
+	path('', views.city_list, name='city_list'),
+]
 
