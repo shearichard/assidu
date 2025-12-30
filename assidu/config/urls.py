@@ -20,11 +20,13 @@ from django.urls import path, include
 #
 from assidu.views import CountryView, CityView
 #
+from neapolitan.views import Role 
+#
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('city/', include('assidu.urls')),
 
 ] 
 urlpatterns += CountryView.get_urls()
-urlpatterns += CityView.get_urls()
+urlpatterns += CityView.get_urls(roles={Role.DELETE})
 #
